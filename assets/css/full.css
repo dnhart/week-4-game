@@ -1,0 +1,71 @@
+/*
+ * Start Bootstrap - Full (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+body {
+    margin-top: 50px; /* Required margin for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+	background-color: transparent;
+}
+
+/* Header Image Background - Change the URL below to your image path (example: ../images/background.jpg) */
+
+.full {
+    background: url('../images/grid.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    max-width: 1600px;
+}
+
+.visible{
+	display: block;
+}
+
+.invisible{
+	display: none;
+}
+
+.container {
+	width: 90%;
+	background-color: transparent;
+}
+
+#creatureBox{
+	background-color: transparent;
+	border: solid black 1px;
+}
+
+h3 {
+	margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.25em;
+}
+
+.creatureLink {
+	float: left;
+	width: auto;
+	margin: 5px;
+	background-color: transparent;
+}
+
+
+.panel-footer {
+    padding: 10px 0;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    text-align: center;
+    white-space: normal;
+    max-width: 158px;
+    min-width: 100%;
+}
+
+
+.attackerBox {
+	background-color: transparent;
+	border: solid blue 1px;
+}
