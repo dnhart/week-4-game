@@ -3,8 +3,11 @@
 //creature count so we know when we have defeated eveyone
 var creatureDef = 0;
 var playerSet = false;
+var opponentSet=false;
 var player = "";
 var attacker ="";
+
+var clickCounter = 0;
 // Creature list
 //var elfWizard = new creature("Elf Wizard", 97, 5, 12);
 //var dragonSorc = new creature("Dragonborn Sorcerer", 110, 5, 8);
@@ -27,13 +30,13 @@ $.each(creatureList, function(key, value) {
 	  var creatureId = key;
 	  var creatureName= value[0];
 	  var creatureHP = value[1];
-	var newDiv= $("<div class='panel panel-default creatureLink' id='" +creatureId +  "' value='" +creatureId+"'><div class='panel-body'><img src='assets/images/" + creatureId+".jpg' class='img-responsive' alt='"+creatureName+"' /><div class='panel-footer'><h3>"+creatureName+"</h3><p>Hit Points = "+creatureHP+"</p></div></div>");
+	var newDiv= $("<div class='panel panel-default creatureLink' id='" +creatureId +  "' value='" +creatureId+"'><div class='panel-body'><img src='assets/images/" + creatureId+".jpg' class='img-responsive' alt='"+creatureName+"' /><div class='panel-footer'><h3>"+creatureName+"</h3><p class='"+creatureId+"hp'>Hit Points = "+creatureHP+"</p></div></div>");
 
 	creatureBox.append(newDiv);
 
 
 });
-
+var creatureBox=$("#creatureBox");
 
 //on.click the creatureLink, check to see if attacker has been made, if not, make creature and assign it to attacker
 
@@ -59,9 +62,10 @@ $(".creatureLink").click(function(event) {
 		//move the character to the attackerBox
 		var creatureId = "#"+self;
 		$(creatureId).appendTo("#attackerBox");
+		$("p."+self+"hp").addClass( "attacker" );
 
-		//var attackButton = ${""};
-//code for attack button here
+
+
 	
 	//function to make the creatures
 		var nameImport = creatureList[self][[0]];
@@ -70,10 +74,10 @@ $(".creatureLink").click(function(event) {
 		var counterImport = creatureList[self][[3]];
 
 		attacker = new creature (nameImport, hpImport, attImport, counterImport); 
-		attacker = new makeAttacker(attacker);
+
 	
 	
-} else {
+} else if (!opponentSet) {
 	//assign as defender
 		//set character as the player's character
 		opponent =self;
@@ -85,6 +89,7 @@ $(".creatureLink").click(function(event) {
 		//move the character to the opponentrBox
 		var creatureId = "#"+self;
 		$(creatureId).appendTo("#opponentBox");
+		$("p."+self+"hp").addClass( "defender" );
 
 	//function to make the creatures
 		var nameImport = creatureList[self][[0]];
@@ -92,27 +97,46 @@ $(".creatureLink").click(function(event) {
 		var attImport = creatureList[self][[2]];
 		var counterImport = creatureList[self][[3]];
 
-		opponent = new creature (nameImport, hpImport, attImport, counterImport); 
-		opponent = new defender(opponent);
+		defender = new creature (nameImport, hpImport, attImport, counterImport); 
+		
+		//switch the boolean check to true
+		opponentSet = true;
+
+		//code for attack button here
+		var attackButton = $("<div id='attackButton'><button class='btn btn-default'>ATTACK!<br /><span class='orange-circle-greater-than'></span></button></div>");
+
+		$("#attackerBox").append(attackButton);
+
+		$("#attackerBox").bind('attack', function() {
+	    //attacker strikes at the defender
+			clickCounter++
+			defender.hp = defender.hp - (attacker.att * clickCounter);
+			
+			//defender counters
+			attacker.hp = attacker.hp - defender.counter;
+
+			$("p.defender").text("Hit Points = "+defender.hp);
+			$("p.attacker").text("Hit Points = "+attacker.hp);
+		//checkDefender();
+
+
+});
+
+
+$("#attackerBox").click(function(){
+    $(this).trigger('attack');
 
 
 
 
 
+});
+  
+} else {
+	alert("You already have an opponent.");
 };
 
 }); //end onclick creatureLink
-
-
-
-
-
-
-
-function makeCreature() {
-		//	= new creature(
-};
-
 
 
 
@@ -125,28 +149,30 @@ function creature (name, hp, att, counter) {
 };
 
 
+
+//function attack(){
+		//attacker strikes at the defender
+		//newAtt = newAtt + attacker.att;
+		//defender.hp = defender.hp - newAtt;
+		
+		//defender counters
+		//attacker.hp = attacker.hp - defender.counter;
+
+	//checkDefender();
+//};
 //function to create the chosen attacker
 //var player = new attacker(elfWizard);
 //attacker.creature.hp 
-function makeAttacker(creature){
-		newAtt: 0;
-		this.creature = creature;
-		this.fight = function(){
-		//attacker strikes at the defender
-		newAtt = newAtt + this.att;
-		defender.hp = defender.hp - newAtt;
-		
-		//defender counters
-		this.hp = this.hp - defender.counter;
-		checkDefender();
-	};
 
-};
+
 
 //function to assign defender
 function defender (creature){
 		this.creature= creature;
 };
+
+
+
 
 //Is the defender still alive?
 function checkDefender() {
