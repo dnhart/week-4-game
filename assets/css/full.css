@@ -20,17 +20,13 @@ body {
     max-width: 1600px;
 }
 
-.visible{
-	display: block;
-}
-
-.invisible{
-	display: none;
-}
-
 .container {
 	width: 90%;
 	background-color: transparent;
+}
+
+.panel {
+	text-align: center;
 }
 
 #creatureBox{
@@ -94,4 +90,14 @@ h3 {
 
 .orange-circle-link-greater-than {
     font-size: 1em;
+}
+
+#attackButton{
+	float:left;
+	clear: both;
+	width: 100%;
+}
+
+#attackMessage {
+	white-space: normal;
 }
