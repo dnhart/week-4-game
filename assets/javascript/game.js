@@ -16,8 +16,8 @@ var creatureList = {
 	 elfWizard: ["Elf Wizard", 97, 5, 12],
 	 dragonSorc: ["Dragonborn Sorcerer", 110, 5, 8],
 	 dwarfCleric: ["Dwarf Cleric", 105, 7, 5],
-	 humanPaladin:["Human Paladin", 120, 7, 6],
-	 humanDruid: ["Human Druid", 140, 5, 11]
+	 humanPaladin:["Human Paladin", 120, 6, 6],
+	 humanDruid: ["Human Druid", 130, 4, 11]
 };
 
 //displays inital board setup - characters with initial values, etc.
@@ -34,14 +34,16 @@ $.each(creatureList, function(key, value) {
 	var newDiv= $("<div class='panel panel-default creatureLink' id='" +creatureId +  "' value='" +creatureId+"'><div class='panel-body'><img src='assets/images/" + creatureId+".jpg' class='img-responsive' alt='"+creatureName+"' /></div><div class='panel-footer'><h3>"+creatureName+"</h3><p class='"+creatureId+"hp'>Hit Points = "+creatureHP+"</p></div>");
 
 	creatureBox.append(newDiv);
+
+
 });
 };
 
 //setup the board
 setup();
-
+$(".creatureLink").on("click", setupPlayer );
 //on.click the creatureLink, check to see if attacker has been made, if not, make creature and assign it to attacker
-$(".creatureLink").on("click", setupPlayer ); 
+ 
 function setupPlayer() {
 	var self = this.attributes[1].value; 
 		//var creatureId = key;
@@ -182,17 +184,17 @@ function checkDefender() {
 				//display
 				$("#attackMessage").html("<p>You hit your opponent for "+(attacker.att * clickCounter)+" damage. They hit you for "+defender.counter+" damage.</p> <p><strong>You have defeated your opponent!</strong><br /> Please choose another from the Creature Box.</p>");
 				$( "#creatureHeading" ).text( "Choose your next opponent.");
-				$("#attackElements").empty();
+				$("#attack").off("click", attack );
 				moveDefender ();
 			} else {
 				//you have defeated everyone
 				$("#attackMessage").html("<p>You hit your opponent for "+(attacker.att * clickCounter)+" damage. They hit you for "+defender.counter+" damage.</p> <p><strong>You WIN!</strong></p>");
-				$("#attackElements").empty();
+				$("#attack").off("click", attack );
 				moveDefender ();
 
 				//code for new game button here
 				var resetButton = $("<div class='panel panel-default'><button class='btn btn-default' id='reset'>New Game</button></div>");
-				$("#attackElements").append(resetButton);
+			$("#attackButton").append(resetButton);
 				$("#reset").on("click", reset ); 
 
 			};
@@ -204,7 +206,7 @@ function checkDefender() {
  	} else {
  	//You are dead
  	$("#attackMessage").html("<p>You hit your opponent for "+(attacker.att * clickCounter)+" damage. They hit you for "+defender.counter+" damage.</p> <p><strong>You have been defeated!</strong></p>");
- 		$("#attackElements").empty();
+ 		$("#attack").off("click", attack );
 				//code for new game button here
 				var resetButton = $("<div class='panel-footer'><button class='btn btn-default' id='reset'>New Game</button></div>");
 				$("#attackButton").append(resetButton);
@@ -224,8 +226,10 @@ function moveDefender(){
 function reset (){	
 	//remove creature from defeated and attacker areas
 
-	$( "#attackerHolder" ).remove(".creatureLink");
-	$( "#opponentBox" ).remove(".creatureLink");
+	$( "#attackerHolder" ).empty();
+	$( "#opponentBox" ).empty();
+	$( "#creatureBox" ).empty();
+
 	$( "#defeatedBox" ).empty();
 
 	$( "#attackerHolder" ).empty();
@@ -241,7 +245,7 @@ function reset (){
 			clickCounter = 0;
 	//reset the board
 			setup();
-			
+			$(".creatureLink").on("click", setupPlayer );
 			$("#reset").off("click", "**" );
 			$("#attack").off("click",  "**"  ); 
 }; //end function reset
