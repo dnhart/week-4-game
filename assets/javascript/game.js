@@ -15,7 +15,7 @@ var resetButton = $("<div class='panel-footer'><button class='btn btn-default' i
 var creatureList = {
 	 elfWizard: ["Elf Wizard", 97, 5, 12],
 	 dragonSorc: ["Dragonborn Sorcerer", 110, 5, 8],
-	 dwarfCleric: ["Dwarf Cleric", 105, 7, 5],
+	 dwarfCleric: ["Dwarf Cleric", 105, 8, 5],
 	 humanPaladin:["Human Paladin", 120, 6, 6],
 	 humanDruid: ["Human Druid", 130, 4, 11]
 };
@@ -31,7 +31,7 @@ $.each(creatureList, function(key, value) {
 	  var creatureId = key;
 	  var creatureName= value[0];
 	  var creatureHP = value[1];
-	var newDiv= $("<div class='panel panel-default creatureLink' id='" +creatureId +  "' value='" +creatureId+"'><div class='panel-body'><img src='assets/images/" + creatureId+".jpg' class='img-responsive' alt='"+creatureName+"' /></div><div class='panel-footer'><h3>"+creatureName+"</h3><p class='"+creatureId+"hp'>Hit Points = "+creatureHP+"</p></div>");
+	  var newDiv= $("<div class='panel panel-default creatureLink' id='" +creatureId +  "' value='" +creatureId+"'><div class='panel-body'><img src='assets/images/" + creatureId+".jpg' class='img-responsive' alt='"+creatureName+"' /></div><div class='panel-footer'><h3>"+creatureName+"</h3><p class='"+creatureId+"hp'>Hit Points = "+creatureHP+"</p></div>");
 
 	creatureBox.append(newDiv);
 
@@ -112,10 +112,14 @@ function setupPlayer() {
 		opponentSet = true;
 
 		//code for attack button here
-		var attackButton = $("<div id='attackButton' class='panel panel-default'><div class='panel-heading' ><button class='btn btn-default' id='attack'>ATTACK!</button></div> <div class='panel-body'><p id='attackMessage'</p></div></div>");
+		//var attackButton = $("<div id='attackButton' class='panel panel-default'><div class='panel-heading' ><button class='btn btn-default' id='attack'>ATTACK!</button></div> <div class='panel-body'><p id='attackMessage'</p></div></div>");
+//var attackButton = $("<div class='panel-footer' ><button class='btn btn-default' id='attack'>ATTACK!</button></div>");
+
+var attackMsg = $("<div class='panel-header' ><button class='btn btn-default' id='attack'>ATTACK!</button></div><div id='attackButton' class='panel panel-default'><div class='panel-body'><p id='attackMessage'>Let's Go! </p></div></div> ");
 
 
-		$("#attackElements").html(attackButton);
+		//$("#attackerContainer").append(attackButton);
+		$("#attackElements").html(attackMsg);
 
 		$("#attack").on("click", attack ); 
 

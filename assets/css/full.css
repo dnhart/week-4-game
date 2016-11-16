@@ -27,6 +27,11 @@ body {
 
 .panel {
 	text-align: center;
+	background-color: transparent;
+}
+
+.panel-body {
+
 }
 
 #creatureBox{
@@ -40,14 +45,30 @@ h3 {
     font-size: 1.25em;
 }
 
+p {
+	background-color: white;
+}
 .creatureLink {
 	float: left;
-	width: auto;
-	margin: 5px;
-	background-color: transparent;
+	background-color: #7f8b96;
+
 }
 
+#attackerHolder > .creatureLink > .panel-body{
+	background-color: #286090;
+}
 
+#opponentBox > .creatureLink > .panel-body{
+	background-color: #be2b2b;
+}
+
+#defeatedBox > .creatureLink > .panel-body{
+	background-color: #010101;
+	opacity: .3;
+}
+#defeatedBox > .creatureLink > .panel-footer{
+	text-decoration: line-through;
+}
 .panel-footer {
     padding: 10px 0;
     background-color: #f5f5f5;
@@ -66,36 +87,19 @@ h3 {
 	border: solid blue 1px;
 }
 
-
-.orange-circle-button {
-	box-shadow: 2px 4px 0 2px rgba(0,0,0,0.1);
-	border: .5em solid #E84D0E;
-	font-size: 1em;
-	line-height: 1.1em;
-	color: #ffffff;
-	background-color: #e84d0e;
-	margin: auto;
-	border-radius: 50%;
-	height: 7em;
-	width: 7em;
-	position: relative;
-}
-.orange-circle-button:hover {
-	color:#ffffff;
-    background-color: #e84d0e;
-	text-decoration: none;
-	border-color: #ff7536;
-	
-}
-
-.orange-circle-link-greater-than {
-    font-size: 1em;
+#attackElements > .panel-header  {
+	float: left;
+	width: 100%;
 }
 
 #attackButton{
 	float:left;
 	clear: both;
 	width: 100%;
+}
+
+#attackButton > .panel-body {
+	background-color: white;
 }
 
 #attackMessage {
