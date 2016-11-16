@@ -9,7 +9,7 @@ var clickCounter = 0;
 
 
 //new game button - only shows at win/lose
-var resetButton = $("<div class='panel-footer'><button class='btn btn-default' id='reset'>New Game</button></div>");
+var resetButton = $("<div class='panel-footer'><button class='btn btn-success' id='reset'>New Game</button></div>");
 
 // Creature list
 var creatureList = {
@@ -115,7 +115,7 @@ function setupPlayer() {
 		//var attackButton = $("<div id='attackButton' class='panel panel-default'><div class='panel-heading' ><button class='btn btn-default' id='attack'>ATTACK!</button></div> <div class='panel-body'><p id='attackMessage'</p></div></div>");
 //var attackButton = $("<div class='panel-footer' ><button class='btn btn-default' id='attack'>ATTACK!</button></div>");
 
-var attackMsg = $("<div class='panel-header' ><button class='btn btn-default' id='attack'>ATTACK!</button></div><div id='attackButton' class='panel panel-default'><div class='panel-body'><p id='attackMessage'>Let's Go! </p></div></div> ");
+var attackMsg = $("<div class='panel-header' ><button class='btn btn-danger' id='attack'>ATTACK!</button></div><div id='attackButton' class='panel panel-default'><div class='panel-body'><p id='attackMessage'>Let's Go! </p></div></div> ");
 
 
 		//$("#attackerContainer").append(attackButton);
@@ -197,7 +197,7 @@ function checkDefender() {
 				moveDefender ();
 
 				//code for new game button here
-				var resetButton = $("<div class='panel panel-default'><button class='btn btn-default' id='reset'>New Game</button></div>");
+				//var resetButton = $("<div class='panel panel-default'><button class='btn btn-success' id='reset'>New Game</button></div>");
 			$("#attackButton").append(resetButton);
 				$("#reset").on("click", reset ); 
 
@@ -212,7 +212,7 @@ function checkDefender() {
  	$("#attackMessage").html("<p>You hit your opponent for "+(attacker.att * clickCounter)+" damage. They hit you for "+defender.counter+" damage.</p> <p><strong>You have been defeated!</strong></p>");
  		$("#attack").off("click", attack );
 				//code for new game button here
-				var resetButton = $("<div class='panel-footer'><button class='btn btn-default' id='reset'>New Game</button></div>");
+				//var resetButton = $("<div class='panel-footer'><button class='btn btn-success' id='reset'>New Game</button></div>");
 				$("#attackButton").append(resetButton);
 				$("#reset").on("click", reset ); 
  } 
