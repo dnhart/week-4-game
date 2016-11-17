@@ -72,8 +72,18 @@ p {
 
 .creatureLink {
 	float: left;
-	background-color: #878378;
+	background-color: transparent;
 	margin: 3px;
+	max-width: 210px;	
+}
+
+.creatureActive {
+    margin-left: 10%;
+}
+
+.defenderActive {
+
+    margin-left: 28%;
 }
 
 .creatureLink > .panel-body {
@@ -95,11 +105,11 @@ p {
 }
 #defeatedBox > .creatureLink > .panel-footer{
 	text-decoration: line-through;
-	background-color: transparent;
+	background-color: #878378;
 }
 .panel-footer {
     padding: 10px 0;
-    background-color: transparent;
+    background-color: #878378;
     border-top: 1px solid #ddd;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;

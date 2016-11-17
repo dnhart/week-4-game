@@ -67,7 +67,7 @@ function setupPlayer() {
 		var creatureId = "#"+self;
 		$(creatureId).appendTo("#attackerHolder");
 		$("p."+self+"hp").addClass( "attacker" );
-
+		$(creatureId).addClass( "creatureActive" );
 
 
 	
@@ -99,6 +99,7 @@ function setupPlayer() {
 		var creatureId = "#"+self;
 		$(creatureId).appendTo("#opponentBox");
 		$("p."+self+"hp").addClass( "defender" );
+		$(creatureId).addClass( "defenderActive" );
 
 	//function to make the creatures
 		var nameImport = creatureList[self][[0]];
@@ -223,6 +224,7 @@ function moveDefender(){
 				var creatureId = "#"+opponent;
 				$(creatureId).appendTo("#defeatedBox");
 				$("p."+opponent+"hp").removeClass( "defender" );
+				$(creatureId).removeClass( "defenderActive" );
 				opponentSet = false;
 }
 
