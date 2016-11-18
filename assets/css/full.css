@@ -101,8 +101,14 @@ p {
 
 #defeatedBox > .creatureLink > .panel-body{
 	background-color: #010101;
-	opacity: .3;
+
 }
+
+#defeatedBox > .creatureLink > .panel-body > img {
+	background-color: #010101;
+	opacity: .5;
+}
+
 #defeatedBox > .creatureLink > .panel-footer{
 	text-decoration: line-through;
 	background-color: #878378;
@@ -136,7 +142,8 @@ p {
 	width: 100%;
 }
 
-#attackButton > .panel-body {
+#attackButton > .panel-body, 
+#attackButton > .panel-footer {
 	background-color: transparent;
 }
 
